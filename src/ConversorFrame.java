@@ -142,16 +142,24 @@ public class ConversorFrame extends javax.swing.JFrame {
     private void btConvertirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btConvertirMouseClicked
 
 
-        
-        if (txGrados.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Ingrese un valor a convertir...","Entrada Inválida",JOptionPane.WARNING_MESSAGE);
-        }else{
-            
-            double celsius = Double.parseDouble(txGrados.getText());
-            double farenheit=celsius * 9 / 5 + 32;  
-            JOptionPane.showMessageDialog(null, "La Temperatura en grados farenheit es: "+farenheit,"Resultado de la Operación de Conversión",JOptionPane.INFORMATION_MESSAGE);
-            
+        try {
+                if (txGrados.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "Ingrese un valor a convertir...","Entrada Inválida",JOptionPane.WARNING_MESSAGE);
+            }else{
+
+                double celsius = Double.parseDouble(txGrados.getText());
+                double farenheit=celsius * 9 / 5 + 32;  
+                JOptionPane.showMessageDialog(null, "La Temperatura en grados farenheit es: "+farenheit,"Resultado de la Operación de Conversión",JOptionPane.INFORMATION_MESSAGE);
         }
+            
+        } catch (Exception NumberFormatException) {
+            //Si el usuario ingresa un texto en lugar de un número, capturamos el error e informamos:
+            
+            JOptionPane.showMessageDialog(null, "Ingrese un valor válido..","Atención",JOptionPane.WARNING_MESSAGE);
+            txGrados.setText("");
+        }
+        
+ 
     }//GEN-LAST:event_btConvertirMouseClicked
 
     /**
